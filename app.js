@@ -6,6 +6,7 @@ let clickDown = false
 fetch(`http://api.themoviedb.org/3/movie/popular?api_key=2e901364c3d103dcb00ced520e9bca3c`)
 .then(response => response.json())
 .then(data => {
+    console.log(data)
     val.addEventListener('mousedown', function(){
         clickDown = true
     })
@@ -20,8 +21,11 @@ fetch(`http://api.themoviedb.org/3/movie/popular?api_key=2e901364c3d103dcb00ced5
         films.innerHTML=""
         new Rage(data).sortRange()
     })
-})
+    returnFunc(data)
+}
+)
 
+//Task1
 class Rage{
     constructor(data){
         this.data = data
@@ -39,4 +43,13 @@ class Rage{
             }
         }        
     }
+}
+
+//Task2
+function returnFunc (data){
+    let arr = []
+    for(let i=0; i<data.results.length;i++){
+        arr.push(data.results[i].title)
+    }
+    console.log(arr)
 }
